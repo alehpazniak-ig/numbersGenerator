@@ -4,5 +4,5 @@ public enum OperationName {
     DIV,
     SUB,
     ADD,
-    MUl;
+    MUL;
 }
