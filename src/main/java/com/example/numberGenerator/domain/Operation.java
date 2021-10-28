@@ -12,4 +12,12 @@ public class Operation {
     private double secondArg;
     private OperationName operationName;
 
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "firstArg=" + firstArg +
+                ", secondArg=" + secondArg +
+                ", operationName=" + operationName +
+                '}';
+    }
 }

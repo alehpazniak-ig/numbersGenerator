@@ -34,15 +34,16 @@ public class RandomOperationSender {
                 operationURL = "/multiply";
                 break;
             case DIV:
-
                 operationURL = "/divide";
                 break;
         }
 
-        String requstURL = SQL_CALCULATOR_URL + operationURL + "/{firstArg}/{secondArg}";
-        System.out.println("sending request to " + requstURL + "with operation " + operation.getOperationName());
-        var result = restTemplate.getForObject(requstURL, Operation.class,
+        String requestURL = SQL_CALCULATOR_URL + operationURL + "/{firstArg}/{secondArg}";
+
+        System.out.println("Sending request to " + requestURL + "with operation " + operation.getOperationName());
+        var result = restTemplate.getForObject(requestURL, Operation.class,
                 operation.getFirstArg(), operation.getSecondArg());
+
         System.out.println("result: DONE");
     }
 }
