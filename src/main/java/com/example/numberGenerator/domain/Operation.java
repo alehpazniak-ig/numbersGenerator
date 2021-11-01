@@ -1,23 +1,17 @@
 package com.example.numberGenerator.domain;
 
 import com.example.numberGenerator.enumeration.OperationName;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Operation {
 
-    private double firstArg;
-    private double secondArg;
     private OperationName operationName;
-
-    @Override
-    public String toString() {
-        return "Operation{" +
-                "firstArg=" + firstArg +
-                ", secondArg=" + secondArg +
-                ", operationName=" + operationName +
-                '}';
-    }
+    private double argFirst;
+    private double argSecond;
+    private double result;
 }

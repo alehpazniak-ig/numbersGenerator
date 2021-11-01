@@ -18,32 +18,32 @@ public class RandomOperationSender {
     @Autowired
     RandomOperationGenerator generator;
 
-    @Scheduled(fixedRate = 2000)
+    @Scheduled(fixedRateString = "${app.operationgenerator.random-operation-sender.fixed-rate}")
     public void sendRandomOperation() {
         String operationURL = "";
 
         Operation operation = generator.generate();
         switch (operation.getOperationName()) {
-            case ADD:
+            case ADDITION:
                 operationURL = "/addition";
                 break;
-            case SUB:
+            case SUBTRACT:
                 operationURL = "/subtract";
                 break;
-            case MUL:
+            case MULTIPLY:
                 operationURL = "/multiply";
                 break;
-            case DIV:
+            case DIVIDE:
                 operationURL = "/divide";
                 break;
         }
 
         String requestURL = SQL_CALCULATOR_URL + operationURL + "/{firstArg}/{secondArg}";
 
-        System.out.println("Sending request to " + requestURL + "with operation " + operation.getOperationName());
+        System.out.println("Sending request to " + requestURL + " with operation " + operation.getOperationName());
         var result = restTemplate.getForObject(requestURL, Operation.class,
-                operation.getFirstArg(), operation.getSecondArg());
+                operation.getArgFirst(), operation.getArgSecond());
 
-        System.out.println("result: DONE");
+        System.out.println("result: " + result);
     }
 }

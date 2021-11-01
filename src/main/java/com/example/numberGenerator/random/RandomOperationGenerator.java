@@ -5,6 +5,7 @@ import com.example.numberGenerator.enumeration.OperationName;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
+import java.util.SplittableRandom;
 
 @Component
 public class RandomOperationGenerator {
@@ -17,13 +18,17 @@ public class RandomOperationGenerator {
         Operation operation = new Operation();
 
         operation.setOperationName(generateOperationName());
-        operation.setFirstArg(firstArg);
-        operation.setSecondArg(secondArg);
+        operation.setArgFirst(firstArg);
+        operation.setArgSecond(secondArg);
 
         return operation;
     }
 
     public static OperationName generateOperationName() {
+        SplittableRandom random = new SplittableRandom();
+        boolean probablyFalse = random.nextInt(25) == 0;
+        boolean whoKnows = random.nextInt(1, 101) == 25;
+        int probability = 25;
         OperationName[] values = OperationName.values();
         int length = values.length;
         int randomIndex = new Random().nextInt(length);
