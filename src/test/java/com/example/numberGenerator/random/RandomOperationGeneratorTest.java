@@ -12,7 +12,7 @@ class RandomOperationGeneratorTest {
     RandomOperationGenerator randomOperationGenerator;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         randomOperationGenerator = new RandomOperationGenerator();
     }
 
@@ -25,4 +25,5 @@ class RandomOperationGeneratorTest {
         assertNotNull(operation.getArgFirst());
         assertNotNull(operation.getArgSecond());
     }
+
 }

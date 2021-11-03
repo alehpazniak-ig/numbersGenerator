@@ -1,14 +1,18 @@
 package com.example.numberGenerator.random;
 
 import com.example.numberGenerator.domain.Operation;
-import com.example.numberGenerator.enumeration.OperationName;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Random;
-import java.util.SplittableRandom;
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Component
 public class RandomOperationGenerator {
+
+    @Autowired
+    private OperationRange rangeNumber;
 
     public Operation generate() {
 
@@ -17,21 +21,10 @@ public class RandomOperationGenerator {
 
         Operation operation = new Operation();
 
-        operation.setOperationName(generateOperationName());
+        operation.setOperationName(rangeNumber.getOperationName());
         operation.setArgFirst(firstArg);
         operation.setArgSecond(secondArg);
 
         return operation;
-    }
-
-    public static OperationName generateOperationName() {
-        SplittableRandom random = new SplittableRandom();
-        boolean probablyFalse = random.nextInt(25) == 0;
-        boolean whoKnows = random.nextInt(1, 101) == 25;
-        int probability = 25;
-        OperationName[] values = OperationName.values();
-        int length = values.length;
-        int randomIndex = new Random().nextInt(length);
-        return values[randomIndex];
     }
 }
