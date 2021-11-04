@@ -2,6 +2,7 @@ package com.example.numberGenerator.random;
 
 import com.example.numberGenerator.domain.Operation;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Component
 public class RandomOperationGenerator {
 
@@ -23,13 +25,13 @@ public class RandomOperationGenerator {
     public Operation generate() {
 
         double argFirst = Math.random() * (upperLimit - lowLimit) + lowLimit;
-        double argSecond = Math.random() * (upperLimit - lowLimit) + lowLimit;
+        double secondArg = Math.random() * (upperLimit - lowLimit) + lowLimit;
 
         Operation operation = new Operation();
 
         operation.setOperationName(randomOperationNameGenerator.getOperationName());
         operation.setArgFirst(argFirst);
-        operation.setArgSecond(argSecond);
+        operation.setArgSecond(secondArg);
         return operation;
     }
 }
