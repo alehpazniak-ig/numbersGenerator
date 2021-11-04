@@ -15,17 +15,17 @@ import java.util.Random;
 public class RandomOperationNameGenerator {
 
     @Value("${app.operationgenerator.operation.rate.DIVIDE}")
-    private Integer DivideRate;
+    private Integer divideRate;
     @Value("${app.operationgenerator.operation.rate.SUBTRACT}")
-    private Integer SubtractRate;
+    private Integer subtractRate;
     @Value("${app.operationgenerator.operation.rate.ADDITION}")
-    private Integer AdditionRate;
+    private Integer additionRate;
     @Value("${app.operationgenerator.operation.rate.MULTIPLY}")
-    private Integer MultiplyRate;
+    private Integer multiplyRate;
 
     @PostConstruct
     public void validateRate() {
-        if (DivideRate + SubtractRate + AdditionRate + MultiplyRate != 100) {
+        if (divideRate + subtractRate + additionRate + multiplyRate != 100) {
             throw new IllegalStateException("Sum of all rates must be 100%");
         }
     }
@@ -34,11 +34,11 @@ public class RandomOperationNameGenerator {
 
     public OperationName getOperationName() {
         int randomNum = RANDOM.nextInt(100);
-        if (randomNum <= DivideRate) {
+        if (randomNum <= divideRate) {
             return OperationName.DIVIDE;
-        } else if (randomNum <= DivideRate + SubtractRate) {
+        } else if (randomNum <= divideRate + subtractRate) {
             return OperationName.SUBTRACT;
-        } else if (randomNum <= (DivideRate + SubtractRate + AdditionRate)) {
+        } else if (randomNum <= (divideRate + subtractRate + additionRate)) {
             return OperationName.ADDITION;
         } else {
             return OperationName.MULTIPLY;
