@@ -12,7 +12,7 @@ import java.util.Random;
 @Component
 @Getter
 @Setter
-public class OperationRange {
+public class RandomOperationNameGenerator {
 
     @Value("${app.operationgenerator.operation.rate.DIVIDE}")
     private Integer DivideRate;

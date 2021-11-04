@@ -11,20 +11,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class RandomOperationGenerator {
 
+    private Double lowLimit = 1.0;
+    private Double upperLimit = 50.0;
+
     @Autowired
-    private OperationRange rangeNumber;
+    private RandomOperationNameGenerator randomOperationNameGenerator;
 
     public Operation generate() {
 
-        double firstArg = Math.random();
-        double secondArg = Math.random();
+        double firstArg = Math.random() * (upperLimit - lowLimit) + lowLimit;
+        double secondArg = Math.random() * (upperLimit - lowLimit) + lowLimit;
 
         Operation operation = new Operation();
 
-        operation.setOperationName(rangeNumber.getOperationName());
+        operation.setOperationName(randomOperationNameGenerator.getOperationName());
         operation.setArgFirst(firstArg);
         operation.setArgSecond(secondArg);
-
         return operation;
     }
 }
